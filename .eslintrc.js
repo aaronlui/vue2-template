@@ -14,16 +14,27 @@ module.exports = {
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
   rules: {
+    "vue/multi-word-component-names": "off",
+    "vue/object-curly-spacing": [2, 'always', {
+      objectsInObjects: false
+    }],
+    "vue/space-in-parens": [2, 'never'],
+    "vue/comma-spacing": [2, {
+      'before': false,
+      'after': true
+    }],
+    "vue/arrow-spacing": [2, {
+      'before': true,
+      'after': true
+    }],
+    'vue/space-infix-ops': 2,
+    "vue/html-self-closing": 0,
     "vue/max-attributes-per-line": [2, {
       "singleline": 10,
-      "multiline": {
-        "max": 1,
-        "allowFirstLine": false
-      }
+      "multiline": 1
     }],
     "vue/singleline-html-element-content-newline": "off",
     "vue/multiline-html-element-content-newline":"off",
-    "vue/name-property-casing": ["error", "PascalCase"],
     "vue/no-v-html": "off",
     'accessor-pairs': 2,
     'arrow-spacing': [2, {
