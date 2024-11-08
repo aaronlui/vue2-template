@@ -1,8 +1,10 @@
 <template>
   <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
-    </transition>
+    <div class="app-scrollbar">
+      <transition name="fade-transform" mode="out-in">
+        <router-view :key="key" />
+      </transition>
+    </div>
   </section>
 </template>
 
@@ -17,16 +19,24 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "~@/styles/mixin";
+@import "~@/styles/variables";
+
 .app-main {
-  /*50 = navbar  */
-  min-height: calc(100vh - 50px);
   width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-.fixed-header+.app-main {
-  padding-top: 50px;
+  height: 100vh;
+  padding-top: $navBarHeight;
+  padding-left: $sideBarWidth;
+  overflow: auto;
+  transition: padding-left 0.28s;
+
+  .app-scrollbar {
+    @include scrollbar;
+
+    height: 100%;
+    overflow: auto;
+  }
 }
 </style>
 

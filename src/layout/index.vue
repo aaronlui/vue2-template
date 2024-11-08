@@ -1,11 +1,11 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" />
+    <div class="fixed-header">
+      <navbar />
+    </div>
     <div class="main-container">
-      <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
-      </div>
+      <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
+      <sidebar class="sidebar-container" />
       <app-main />
     </div>
   </div>
@@ -30,9 +30,6 @@ export default {
     device() {
       return this.$store.state.app.device
     },
-    fixedHeader() {
-      return this.$store.state.settings.fixedHeader
-    },
     classObj() {
       return {
         hideSidebar: !this.sidebar.opened,
@@ -51,43 +48,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/styles/mixin.scss";
-  @import "~@/styles/variables.scss";
+  @import "~@/styles/mixin";
+  @import "~@/styles/variables";
 
   .app-wrapper {
     @include clearfix;
-    position: relative;
-    height: 100%;
+
     width: 100%;
-    &.mobile.openSidebar{
+
+    &.mobile.openSidebar {
       position: fixed;
       top: 0;
     }
   }
+
   .drawer-bg {
+    position: absolute;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
     background: #000;
     opacity: 0.3;
-    width: 100%;
-    top: 0;
-    height: 100%;
-    position: absolute;
-    z-index: 999;
   }
 
   .fixed-header {
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 9;
-    width: calc(100% - #{$sideBarWidth});
-    transition: width 0.28s;
-  }
-
-  .hideSidebar .fixed-header {
-    width: calc(100% - 54px)
-  }
-
-  .mobile .fixed-header {
+    left: 0;
+    z-index: 1002;
     width: 100%;
+    transition: width 0.28s;
   }
 </style>
