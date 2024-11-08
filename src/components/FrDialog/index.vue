@@ -30,9 +30,7 @@
 </template>
 
 <script>
-import ElDragDialog from '@/directive/el-drag-dialog'
 export default {
-  directives: { ElDragDialog },
   model: {
     prop: 'value',
     event: 'update:value'
